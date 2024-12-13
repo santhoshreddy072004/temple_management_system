@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12 text-center mb-4">
+        <h1>Discover Sacred Temples of India</h1>
+        <p class="lead">Explore the rich spiritual heritage and architectural marvels</p>
+    </div>
+</div>
+
+<!-- Search Bar -->
+<div class="row mb-4">
+    <div class="col-md-8 offset-md-2">
+        <form action="{{ url_for('temples.search_temples') }}" method="GET" class="d-flex">
+            <input class="form-control me-2" type="search" name="query" placeholder="Search temples by name, location, or description" aria-label="Search">
+            <button class="btn btn-outline-primary" type="submit">Search</button>
+        </form>
+    </div>
+</div>
+
+<!-- Popular Temples Section -->
+<div class="row">
+    <div class="col-12">
+        <h2 class="text-center mb-4">Popular Temples</h2>
+    </div>
+    {% for temple in popular_temples %}
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            <img src="{{ temple.image_url or url_for('static', filename='images/default_temple.jpg') }}" class="card-img-top" alt="{{ temple.name }}">
+            <div class="card-body">
+                <h5 class="card-title">{{ temple.name }}</h5>
+                <p class="card-text">{{ temple.description[:100] }}...</p>
+                <a href="{{ url_for('temples.temple_details', temple_id=temple.id) }}" class="btn btn-primary">View Details</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<!-- Featured Section -->
+<div class="row mt-4">
+    <div class="col-12 text-center">
+        <h2>Why Choose Temple Management?</h2>
+    </div>
+    <div class="col-md-4 text-center">
+        <div class="feature-icon mb-3">🕍</div>
+        <h3>Extensive Temple Database</h3>
+        <p>Explore a comprehensive collection of temples from across India</p>
+    </div>
+    <div class="col-md-4 text-center">
+        <div class="feature-icon mb-3">🎫</div>
+        <h3>Easy Ticket Booking</h3>
+        <p>Book your temple visits seamlessly with just a few clicks</p>
+    </div>
+    <div class="col-md-4 text-center">
+        <div class="feature-icon mb-3">📱</div>
+        <h3>Mobile Friendly</h3>
+        <p>Access temple information anytime, anywhere on any device</p>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+.feature-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+</style>
+{% endblock %}

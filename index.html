@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temple Management System</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#"><i class="fas fa-om"></i>Temple Management</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#temples">Temples</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="my-bookings.html">My Bookings</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+                <div class="d-flex">
+                    <button class="btn btn-light me-2" data-bs-toggle="modal" data-bs-target="#loginModal">
+                        <i class="fas fa-sign-in-alt"></i> Login
+                    </button>
+                    <button class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#registerModal">
+                        <i class="fas fa-user-plus"></i> Register
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container text-center text-white">
+            <h1 class="display-4">Welcome to Temple Management System</h1>
+            <p class="lead">Discover the spiritual journey through India's most sacred temples</p>
+            <div class="search-container">
+                <input type="text" class="form-control" placeholder="Search for temples...">
+                <button class="btn btn-primary">
+                    <i class="fas fa-search"></i> Search
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Temples Section -->
+    <section class="featured-temples py-5">
+        <div class="container">
+            <h2 class="text-center mb-4">Featured Temples</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card temple-card">
+                        <img src="images\golden temple.jpg" class="card-img-top" alt="Golden Temple with reflection in Amrit Sarovar" style="height: 250px; object-fit: cover;">
+                        <div class="card-body">
+                            <h5 class="card-title">Golden Temple</h5>
+                            <p class="card-text">The Golden Temple, also known as Sri Harmandir Sahib, is the holiest shrine in Sikhism. Built in the 16th century, its upper floors are covered with 750 kg of pure gold. The temple is renowned for its langar, serving free meals to over 100,000 visitors daily. The sacred Amrit Sarovar surrounding it is believed to have healing properties.</p>
+                            <button class="btn btn-primary" onclick="openBookingModal('Golden Temple')">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card temple-card">
+                        <img src="images\meenakshi.jpg" class="card-img-top" alt="Meenakshi Temple" style="height: 250px; object-fit: cover;">
+                        <div class="card-body">
+                            <h5 class="card-title">Meenakshi Temple</h5>
+                            <p class="card-text">The Meenakshi Amman Temple in Madurai is a historic marvel dating back to the 6th century BC. Its 14 magnificent gopurams (gateway towers) are adorned with over 33,000 sculptures. The temple complex spans 14 acres and features the famous Hall of Thousand Pillars, each carved with unique mythological scenes.</p>
+                            <button class="btn btn-primary" onclick="openBookingModal('Meenakshi Temple')">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card temple-card">
+                        <img src="images\kedarnath.jpg" class="card-img-top" alt="Kedarnath Temple" style="height: 250px; object-fit: cover;">
+                        <div class="card-body">
+                            <h5 class="card-title">Kedarnath Temple</h5>
+                            <p class="card-text">Perched at 11,755 feet in the Himalayas, Kedarnath is one of the twelve Jyotirlingas of Lord Shiva. Built in the 8th century, this temple remarkably survived the 2013 floods. The temple is accessible only six months a year due to extreme weather and is surrounded by breathtaking snow-capped peaks.</p>
+                            <button class="btn btn-primary" onclick="openBookingModal('Kedarnath Temple')">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card temple-card">
+                        <img src="images\Tirumala_090615.jpg" class="card-img-top" alt="Tirupati Balaji Temple" style="height: 250px; object-fit: cover;">
+                        <div class="card-body">
+                            <h5 class="card-title">Tirupati Balaji Temple</h5>
+                            <p class="card-text">Sri Venkateswara Temple at Tirupati is the world's richest temple, receiving offerings worth millions daily. Located on the seven peaks of Tirumala Hills, it's visited by 50,000-100,000 pilgrims daily. The temple's kitchen is one of the largest in the world, serving free meals to thousands of devotees.</p>
+                            <button class="btn btn-primary" onclick="openBookingModal('Tirupati Balaji Temple')">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card temple-card">
+                        <img src="images\Somanath_mandir_(cropped).jpg" class="card-img-top" alt="Somnath Temple" style="height: 250px; object-fit: cover;">
+                        <div class="card-body">
+                            <h5 class="card-title">Somnath Temple</h5>
+                            <p class="card-text">The Somnath Temple in Gujarat is the first among the twelve Jyotirlingas. Rebuilt several times after repeated invasions, the current structure (1951) represents the resilience of Indian culture. The temple's shikhara (spire) is 15 meters high and adorned with an 8.2-meter flag pole.</p>
+                            <button class="btn btn-primary" onclick="openBookingModal('Somnath Temple')">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card temple-card">
+                        <img src="images\17th_century_Jagannath_temple_Ranchi_Jharkhand_-_9.jpg" class="card-img-top" alt="Jagannath Temple" style="height: 250px; object-fit: cover;">
+                        <div class="card-body">
+                            <h5 class="card-title">Jagannath Temple</h5>
+                            <p class="card-text">The Jagannath Temple in Puri is famous for its annual Rath Yatra (chariot festival). Built in the 12th century, it's known for its unique architecture where the flag atop the temple dome appears to flutter in the opposite direction of the wind. The temple kitchen can cook for 100,000 people daily using traditional methods.</p>
+                            <button class="btn btn-primary" onclick="openBookingModal('Jagannath Temple')">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Section -->
+    <section id="booking" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-4">Book Your Visit</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-body">
+                            <form id="bookingForm">
+                                <div class="mb-3">
+                                    <label class="form-label">Select Temple</label>
+                                    <select class="form-select">
+                                        <option>Golden Temple</option>
+                                        <option>Meenakshi Temple</option>
+                                        <option>Kedarnath Temple</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Visit Date</label>
+                                    <input type="date" class="form-control">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Number of Visitors</label>
+                                    <input type="number" class="form-control" min="1" max="10">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Book Now</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-4">About Us</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>Our Mission</h3>
+                    <p>To provide a seamless and spiritual experience for temple visitors by offering easy booking and management services.</p>
+                </div>
+                <div class="col-md-6">
+                    <h3>Features</h3>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-check text-success"></i> Easy temple booking</li>
+                        <li><i class="fas fa-check text-success"></i> Virtual temple tours</li>
+                        <li><i class="fas fa-check text-success"></i> Detailed temple information</li>
+                        <li><i class="fas fa-check text-success"></i> 24/7 customer support</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Login Modal -->
+    <div class="modal fade" id="loginModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Login</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="loginForm">
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Password</label>
+                            <input type="password" class="form-control">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal fade" id="registerModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Register</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="registerForm">
+                        <div class="mb-3">
+                            <label class="form-label">Name</label>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Password</label>
+                            <input type="password" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Confirm Password</label>
+                            <input type="password" class="form-control">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Register</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Booking Modal -->
+    <div class="modal fade" id="bookingModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Book Temple Visit</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="templeBookingForm">
+                        <input type="hidden" id="selectedTemple" name="temple">
+                        <div class="mb-3">
+                            <label class="form-label">Selected Temple</label>
+                            <input type="text" class="form-control" id="displayTemple" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Visit Date</label>
+                            <input type="date" class="form-control" name="date" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Visit Time</label>
+                            <select class="form-select" name="time" required>
+                                <option value="">Select Time</option>
+                                <option value="06:00">6:00 AM</option>
+                                <option value="07:00">7:00 AM</option>
+                                <option value="08:00">8:00 AM</option>
+                                <option value="09:00">9:00 AM</option>
+                                <option value="10:00">10:00 AM</option>
+                                <option value="11:00">11:00 AM</option>
+                                <option value="16:00">4:00 PM</option>
+                                <option value="17:00">5:00 PM</option>
+                                <option value="18:00">6:00 PM</option>
+                                <option value="19:00">7:00 PM</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Number of Visitors</label>
+                            <input type="number" class="form-control" name="visitors" min="1" max="10" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Special Requirements</label>
+                            <textarea class="form-control" name="requirements" rows="3"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Confirm Booking</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>Contact Us</h5>
+                    <p>
+                        <i class="fas fa-envelope"></i> info@templemanagement.com<br>
+                        <i class="fas fa-phone"></i> +91 1234567890
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#home" class="text-white">Home</a></li>
+                        <li><a href="#temples" class="text-white">Temples</a></li>
+                        <li><a href="#booking" class="text-white">Book Tickets</a></li>
+                        <li><a href="#about" class="text-white">About</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Follow Us</h5>
+                    <div class="social-links">
+                        <a href="#" class="text-white me-2"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-white me-2"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white me-2"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="static/js/main.js"></script>
+    <script>
+        function openBookingModal(templeName) {
+            document.getElementById("selectedTemple").value = templeName;
+            document.getElementById("displayTemple").value = templeName;
+            var modal = new bootstrap.Modal(document.getElementById("bookingModal"));
+            modal.show();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Bookings - Temple Management System</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="static/css/style.css">
+    <style>
+        .booking-card.cancelled {
+            opacity: 0.7;
+        }
+        .booking-card.cancelled .card-body {
+            position: relative;
+        }
+        .booking-card.cancelled .card-body::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.05);
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-om"></i> Temple Management
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#temples">Temples</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="my-bookings.html">My Bookings</a>
+                    </li>
+                </ul>
+                <div class="d-flex">
+                    <button class="btn btn-light me-2">
+                        <i class="fas fa-user"></i> John Doe
+                    </button>
+                    <button class="btn btn-outline-light">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- My Bookings Section -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-4">My Temple Bookings</h2>
+            <div class="row">
+                <!-- Booking Card 1 -->
+                <div class="col-md-6 mb-4">
+                    <div class="card booking-card">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="static/images/golden-temple-reflection.jpg" class="img-fluid rounded-start h-100" alt="Golden Temple with reflection in Amrit Sarovar" style="object-fit: cover;">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">Golden Temple</h5>
+                                    <p class="card-text">
+                                        <i class="far fa-calendar"></i> Date: December 15, 2024<br>
+                                        <i class="far fa-clock"></i> Time: 10:00 AM<br>
+                                        <i class="fas fa-users"></i> Visitors: 2<br>
+                                        <span class="badge bg-success booking-status">Confirmed</span>
+                                    </p>
+                                    <button class="btn btn-danger btn-sm" onclick="cancelBooking(1, 'Golden Temple')">Cancel Booking</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Booking Card 2 -->
+                <div class="col-md-6 mb-4">
+                    <div class="card booking-card">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="static/images/kedarnath.jpg" class="img-fluid rounded-start h-100" alt="Kedarnath Temple">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">Kedarnath Temple</h5>
+                                    <p class="card-text">
+                                        <i class="far fa-calendar"></i> Date: December 20, 2024<br>
+                                        <i class="far fa-clock"></i> Time: 9:00 AM<br>
+                                        <i class="fas fa-users"></i> Visitors: 4<br>
+                                        <span class="badge bg-warning text-dark booking-status">Pending</span>
+                                    </p>
+                                    <button class="btn btn-danger btn-sm" onclick="cancelBooking(2, 'Kedarnath Temple')">Cancel Booking</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cancellation Confirmation Modal -->
+    <div class="modal fade" id="cancelModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Cancel Booking</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to cancel your booking for <span id="cancelTemple"></span>?</p>
+                    <p class="text-muted">This action cannot be undone.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No, Keep Booking</button>
+                    <button type="button" class="btn btn-danger" onclick="confirmCancellation()">Yes, Cancel Booking</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>Contact Us</h5>
+                    <p>
+                        <i class="fas fa-envelope"></i> info@templemanagement.com<br>
+                        <i class="fas fa-phone"></i> +91 1234567890
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html" class="text-white">Home</a></li>
+                        <li><a href="index.html#temples" class="text-white">Temples</a></li>
+                        <li><a href="my-bookings.html" class="text-white">My Bookings</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Follow Us</h5>
+                    <div class="social-links">
+                        <a href="#" class="text-white me-2"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-white me-2"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white me-2"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="static/js/main.js"></script>
+    <script>
+        let currentBookingId = null;
+        let currentBookingCard = null;
+
+        function cancelBooking(bookingId, templeName) {
+            currentBookingId = bookingId;
+            document.getElementById('cancelTemple').textContent = templeName;
+            currentBookingCard = document.querySelector(`[onclick="cancelBooking(${bookingId}, '${templeName}')"]`).closest('.booking-card');
+            const modal = new bootstrap.Modal(document.getElementById('cancelModal'));
+            modal.show();
+        }
+
+        function confirmCancellation() {
+            if (currentBookingCard) {
+                // Update the status badge
+                const statusBadge = currentBookingCard.querySelector('.booking-status');
+                statusBadge.classList.remove('bg-success', 'bg-warning');
+                statusBadge.classList.add('bg-danger');
+                statusBadge.textContent = 'Cancelled';
+
+                // Disable the cancel button
+                const cancelButton = currentBookingCard.querySelector('.btn-danger');
+                cancelButton.disabled = true;
+                cancelButton.textContent = 'Booking Cancelled';
+
+                // Add cancelled class for styling
+                currentBookingCard.classList.add('cancelled');
+
+                // Close the modal
+                bootstrap.Modal.getInstance(document.getElementById('cancelModal')).hide();
+
+                // Show success message
+                alert('Booking has been cancelled successfully.');
+            }
+        }
+    </script>
+</body>
+</html>
